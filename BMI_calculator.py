@@ -1,18 +1,19 @@
-#BMI calculator
+class BMICalculator:
 
-height = float(input("Enter your height in meters: "))
-weight = float(input("Enter your weight in kilograms: "))
-bmi = weight / (height ** 2)
-print(f"Your BMI is: {bmi:.2f}")
+    def get_data(self):
+        weight = float(input("Enter your weight (kg): "))
+        height = float(input("Enter your height (m): "))
+        return weight, height
 
-if bmi < 18.5:
+    def calculate_bmi(self, weight, height):
+        return weight / (height ** 2)
 
-    print("you are underweight")
-elif bmi < 25:
-    print("normal weight")
-elif bmi < 30:
-    print("overweight")
-else:
-    print("obese")
+    def display_result(self, bmi):
+        print(f"Your BMI is {bmi:.2f}")
 
 
+calculator = BMICalculator()
+
+weight, height = calculator.get_data()
+bmi = calculator.calculate_bmi(weight, height)
+calculator.display_result(bmi)
