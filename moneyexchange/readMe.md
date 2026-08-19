@@ -2,16 +2,16 @@
 
 ## Project Introduction
 This project is a simple Money Exchange System developed using Python and SQLite3 for **MSE800 Week 3 - Activity 5**. 
-The system manages customer details, currencies, exchange rates, and exchange transactions based on Object-Oriented Programming (OOP) principles.
+The system manages client details, currencies, exchange rates, and exchange transactions based on Object-Oriented Programming (OOP) principles.
 
 ---
 
 ## Database Architecture (4 Tables)
 
-1. **`Customer`**: Stores customer identity details (ID, First Name, Last Name, Phone Number). Necessary to link transactions to specific clients.
+1. **`Client`**: Stores client identity details (ID, Full Name, contact Number). Necessary to link transactions to specific clients.
 2. **`Currency`**: Stores supported currency details (ID, Code, Name like NZD, USD, CNY). Prevents string duplication across transaction records.
 3. **`ExchangeRate`**: Stores conversion rates between currency pairs (Rate ID, From Currency, To Currency, Exchange Rate). Necessary for independent rate management.
-4. **`TransactionHistory`**: Records every executed exchange (Transaction ID, Customer ID, From Currency, To Currency, Amount, Exchange Rate). Necessary for business transaction logging.
+4. **`TransactionRecord`**: Records every executed exchange (Transaction ID, Customer ID, From Currency, To Currency, Amount, Exchange Rate). Necessary for business transaction logging.
 
 ---
 
@@ -19,35 +19,35 @@ The system manages customer details, currencies, exchange rates, and exchange tr
 
 ```mermaid
 erDiagram
-    CUSTOMER ||--o{ TRANSACTION_HISTORY : places
-    CURRENCY ||--o{ EXCHANGE_RATE : "from/to"
-    CURRENCY ||--o{ TRANSACTION_HISTORY : "source/target"
+    CLIENT ||--o{ TRANSACTIONRECORD : places
+    CURRENCY ||--o{ EXCHANGERATE : "source/target"
+    CURRENCY ||--o{ TRANSACTIONRECORD : "from/to"
 
-    CUSTOMER {
-        int Customer_ID PK
-        string First_Name
-        string Last_Name
-        string Phone_Number
+    CLIENT {
+        int client_id PK
+        string full_name
+        string contact_no
     }
 
     CURRENCY {
-        int Currency_ID PK
-        string Currency_Code
-        string Currency_Name
+        int currency_id PK
+        string code
+        string title
     }
 
-    EXCHANGE_RATE {
-        int Rate_ID PK
-        string From_Currency
-        string To_Currency
-        float Exchange_Rate
+    EXCHANGERATE {
+        int rate_id PK
+        int source_curr_id FK
+        int target_curr_id FK
+        float conversion_rate
     }
 
-    TRANSACTION_HISTORY {
-        int Transaction_ID PK
-        int Customer_ID FK
-        string From_Currency
-        string To_Currency
-        float Amount
-        float Exchange_Rate
+    TRANSACTIONRECORD {
+        int tx_id PK
+        int client_id FK
+        int source_curr_id FK
+        int target_curr_id FK
+        float src_amount
+        float converted_amount
     }
+```
