@@ -39,4 +39,41 @@ No manual database setup or external configuration is required to run this appli
 1. Open a terminal or command prompt in the project root directory.
 2. Verify dependency requirements:
    ```bash
-   pip install -r requirements.txt
+   pip install -r requirements.
+   
+   ## Entity-Relationship (ER) Diagram
+
+```mermaid
+erDiagram
+    CLIENT ||--o{ TRANSACTIONRECORD : places
+    CURRENCY ||--o{ EXCHANGERATE : "source/target"
+    CURRENCY ||--o{ TRANSACTIONRECORD : "from/to"
+
+    CLIENT {
+        int client_id PK
+        string full_name
+        string contact_no
+    }
+
+    CURRENCY {
+        int currency_id PK
+        string code
+        string title
+    }
+
+    EXCHANGERATE {
+        int rate_id PK
+        int source_curr_id FK
+        int target_curr_id FK
+        float conversion_rate
+    }
+
+    TRANSACTIONRECORD {
+        int tx_id PK
+        int client_id FK
+        int source_curr_id FK
+        int target_curr_id FK
+        float src_amount
+        float converted_amount
+    }
+```
