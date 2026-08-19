@@ -1,0 +1,46 @@
+{
+    "users": [
+        {
+            "username": "admin",
+            "password": "adminpassword",
+            "role": "admin"
+        },
+        {
+            "username": "john_doe",
+            "password": "userpassword",
+            "role": "customer"
+        },
+        {
+            "username": "priya",
+            "password": "1234password",
+            "role": "customer"
+        }
+    ],
+    "cars": [
+        {
+            "id": 101,
+            "make": "Toyota",
+            "model": "Corolla",
+            "year": 2022,
+            "mileage": 15000,
+            "available_now": true,
+            "min_rent": 1,
+            "max_rent": 14,
+            "daily_rate": 60.0,
+            "needs_maintenance": false
+        },
+        {
+            "id": 102,
+            "make": "Tesla",
+            "model": "Model 3",
+            "year": 2023,
+            "mileage": 8000,
+            "available_now": true,
+            "min_rent": 2,
+            "max_rent": 30,
+            "daily_rate": 110.0,
+            "needs_maintenance": false
+        }
+    ],
+    "bookings": []
+}
